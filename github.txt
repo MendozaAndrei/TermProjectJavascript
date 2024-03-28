@@ -1,0 +1,3 @@
+git pull origin master: pulls
+git add .: to add a change 
+git commit -m "comment": to commit a change to github
