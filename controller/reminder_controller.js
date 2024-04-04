@@ -95,14 +95,16 @@ let remindersController = {
   },
   destroy: (req, res) => {
     const sessionId = req.params.sessionId;
-    console.log(sessionId)
     req.sessionStore.destroy(sessionId, (err) => {
       if (err) {
         console.log(err);
-        return res.redirect('/admin');
+        res.status(500).send({ error: 'Failed to destroy session' });
+      } else {
+        console.log('Session destroyed successfully');
+        res.redirect('/admin');
       }
-      res.redirect('/admin');
-    });}
+    });
+  }
 
 };
 
