@@ -1,5 +1,8 @@
 const userModel = require("../models/userModel").userModel;
 
+function isUserValid(user, password) {
+  return user.password === password;
+}
 const getUserByEmailIdAndPassword = (email, password) => {
   let user = userModel.findOne(email);
   if (user) {
@@ -17,9 +20,6 @@ const getUserById = (id) => {
   return null;
 };
 
-function isUserValid(user, password) {
-  return user.password === password;
-}
 
 module.exports = {
   getUserByEmailIdAndPassword,

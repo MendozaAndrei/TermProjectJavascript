@@ -1,29 +1,19 @@
-let database = require("../models/userModel");
+const passport = require("passport");
 
 let authController = {
   login: (req, res) => {
-    res.render("login", { user: req.user });
+    res.render("auth/login");
   },
 
   register: (req, res) => {
     res.render("auth/register");
   },
 
-  loginSubmit: (req, res) => {
-    let { username, password } = req.body;
-    console.log(username, password)
-    let user = database.users.find(user => {
-      return user.username === username && user.password === password;
-    });
-
-    if (user) {
-      // User found and password correct
-      req.session.user = user;
-      res.redirect('/reminder');
-    } else {
-      // User not found or password incorrect
-      res.redirect('/login');
-    }
+  loginSubmit: (req, res, next) => {
+    passport.authenticate("local", {
+      successRedirect: "/reminders",
+      failureRedirect: "/login",
+    })(req, res, next);
   },
 
   registerSubmit: (req, res) => {

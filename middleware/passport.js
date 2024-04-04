@@ -1,9 +1,6 @@
 const passport = require("passport");
-
 const LocalStrategy = require("passport-local").Strategy;
 const userController = require("../controller/userController");
-const User = require("../models/userModel.js");
-const { userModel } = require("../models/userModel.js");
 const localLogin = new LocalStrategy(
   {
     usernameField: "email",
@@ -14,26 +11,23 @@ const localLogin = new LocalStrategy(
     return user
       ? done(null, user)
       : done(null, false, {
-        message: "Your login details are not valid. Please try again",
-      });
+          message: "Your login details are not valid. Please try again",
+        });
   }
 );
 
+// create a session middleware with the given options
 passport.serializeUser(function (user, done) {
-  if (user.login) done(null, user.login);
-  else done(null, user);
+  return done(null, user.id);
 });
 
+// Keeps session up to date 
 passport.deserializeUser(function (id, done) {
-  if (typeof id === "object") {
-    done(null, id);
+  let user = userController.getUserById(id);
+  if (user) {
+    return done(null, user);
   } else {
-    let user = userController.getUserById(id);
-    if (user) {
-      done(null, user);
-    } else {
-      done({ message: "User not found" }, null);
-    }
+    return done({ message: "User not found" }, null);
   }
 });
 

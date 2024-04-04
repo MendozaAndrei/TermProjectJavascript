@@ -1,42 +1,51 @@
-
-let database = require("../database");
+let database = require("../models/userModel").database;
 
 let remindersController = {
   list: (req, res) => {
-    console.log(req.users.reminders)
-    res.render("reminder/index", { reminders: req.users.reminders });
+    console.log(req.user)
+    if (req.user && req.user.role === "admin") {
+      res.redirect("/admin")
+    } else if (req.user && req.user.role === "regular") {
+      res.render("reminder/index", { reminders: req.user.reminders });
+    } else {
+      // Handle the case where req.user is undefined
+      // Maybe redirect to login page or show an error message
+      res.redirect("/login");
+    }
   },
+  // rest of the code
 
   new: (req, res) => {
     res.render("reminder/create");
   },
 
   listOne: (req, res) => {
-    let reminderToFind = req.params.id;
-    let searchResult = req.users.reminders.find(function (reminder) {
-      return reminder.id == reminderToFind;
-    });
-    if (searchResult != undefined) {
-      res.render("reminder/single-reminder", { reminderItem: searchResult });
+    if (req.user.reminders.length > 0) {
+      let item = req.user.reminders.find(function (reminder) {
+        if (reminder.id === req.params["id"]); {
+          return reminder
+        }
+      });
+      res.render("reminder/single-reminder", { reminderItem: item });
     } else {
-      res.render("reminder/index", { reminders: req.users.reminders });
+      res.render("rem inder/index", { reminders: req.user.reminders });
     }
-  },
+},
 
   create: (req, res) => {
     let reminder = {
-      id: req.users.reminders.length + 1,
+      id: req.user.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
     };
-    req.users.reminders.push(reminder);
+    req.user.reminders.push(reminder);
     res.redirect("/reminders");
   },
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = req.users.reminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -44,22 +53,25 @@ let remindersController = {
 
   update: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = req.users.reminders.find(function (reminder) {
-      return reminder.id == reminderToFind;
+    req.user.reminders.find(function (reminder) {
+      if (reminder.id == reminderToFind) {
+        reminder.title = req.body.title;
+        reminder.description = req.body.description;
+        reminder.completed = true ? req.body.completed === "true" : false;
+        return reminder.id
+      }
     });
-    searchResult.title = req.body.title;
-    searchResult.description = req.body.description;
     res.redirect("/reminders");
   },
 
   delete: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = req.users.reminders.find(function (reminder) {
+    let searchResult = req.user.reminders.find(function (reminder) {
       return reminder.id == reminderToFind;
-    });
-    let index = req.users.reminders.indexOf(searchResult);
-    req.users.reminders.splice(index, 1);
+    })
+    req.user.reminders.splice(req.user.reminders.indexOf(searchResult), 1);
     res.redirect("/reminders");
+
   },
 };
 
