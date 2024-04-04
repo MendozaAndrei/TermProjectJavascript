@@ -26,7 +26,7 @@ app.use(
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayouts);
@@ -43,18 +43,28 @@ app.use(passport.session());
 // Routes start here
 app.get("/", reminderController.list); 
 app.get("/reminders", reminderController.list);
+
 app.get("/admin", reminderController.admin);
+app.get("/destroy/:sessionId", reminderController.destroy);
+
 app.get("/reminder/new", reminderController.new);
 app.get("/reminder/:id", reminderController.listOne);
 app.get("/reminder/:id/edit", reminderController.edit);
+
+
+
+
+
+
 app.post("/reminder/", reminderController.create);
 // ⭐ Implement these two routes below!
 app.post("/reminder/update/:id", reminderController.update);
-app.post("/admin", reminderController.destroy);
 app.post("/reminder/delete/:id", reminderController.delete);
+
+app.post("/destroy/:sessionId", reminderController.destroy);
+
 app.get("/logout", reminderController.logout);
 app.post("/logout", reminderController.logout);
-// 👌 Ignore for now
 app.get("/register", authController.register);
 app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);

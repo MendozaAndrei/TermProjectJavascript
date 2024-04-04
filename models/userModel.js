@@ -13,6 +13,10 @@ let database = [
         description: "Buy milk and bread from safeway",
         completed: false,
       },
+      {
+        id: 2,
+        title: ""
+      }
     ],
   },
   {

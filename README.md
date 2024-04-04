@@ -8,6 +8,11 @@ Andrei Jan Mendoza:
 4. Created admin page to show available sessions. 
     - Sourced form watching through passport video
     - Information from npm library
+5. Made sure Revoke button works. 
+    - Sourced from watching through passport videos
+    - Old Code from previous labs
+    - Reading through npm library documentation.
+    
 
 
 

@@ -4,6 +4,7 @@
 <a href="/logout" class="btn btn-secondary">Logout</a>    
     <h2 class="mt-4">Sessions</h2>
     <table class="table table-striped">
+      
         <thead>
             <tr>
                 <th>SessionID</th>
@@ -11,13 +12,18 @@
                 <th>Actions</th>
             </tr>
         </thead>
+
+        
         <% sessions.forEach(session => { %>
             <tr>
               <td><%= session.SessionID %></td>
               <td><%= session.UserID %></td>
               <td>
-                <button class="btn btn-danger" onclick="sessionStore.destroy('<%= session.id %>')">Delete</button>
+                <form action="/destroy/<%= session.SessionID %>" method="post">
+                  <button type="submit" class="btn btn-secondary">Revoke</button>
+                </form>
               </td>
             </tr>
+
           <% }) %>
 </div>
