@@ -20,15 +20,16 @@ let remindersController = {
   },
 
   listOne: (req, res) => {
-    if (req.user.reminders.length > 0) {
-      let item = req.user.reminders.find(function (reminder) {
-        return reminder.id === req.params["id"]
-      });
-      res.render("reminder/single-reminder", { reminderItem: item });
+    let reminderToFind = req.params.id;
+    let searchResult = req.user.reminders.find(function (reminder) {
+      return reminder.id == reminderToFind;
+    });
+    if (searchResult != undefined) {
+      res.render("reminder/single-reminder", { reminderItem: searchResult });
     } else {
       res.render("reminder/index", { reminders: req.user.reminders });
     }
-},
+  },
 
   create: (req, res) => {
     let reminder = {
