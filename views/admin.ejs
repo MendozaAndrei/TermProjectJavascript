@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h1 class="mt-4">Admin</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+    <h2 class="mt-4">Sessions</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <% sessions.forEach(session => { %>
+            <tr>
+              <td><%= session.id %></td>
+              <td><%= session.name %></td>
+              <td><%= session.email %></td>
+              <td><%= session.role %></td>
+              <td>
+                <button class="btn btn-danger" onclick="deleteSession('<%= session.id %>')">Delete</button>
+              </td>
+            </tr>
+          <% }) %>
+</div>

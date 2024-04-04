@@ -4,7 +4,7 @@ let remindersController = {
   list: (req, res) => {
     console.log(req.user)
     if (req.user && req.user.role === "admin") {
-      res.redirect("/admin")
+        res.redirect('/admin');
     } else if (req.user && req.user.role === "regular") {
       res.render("reminder/index", { reminders: req.user.reminders });
     } else {
@@ -22,13 +22,11 @@ let remindersController = {
   listOne: (req, res) => {
     if (req.user.reminders.length > 0) {
       let item = req.user.reminders.find(function (reminder) {
-        if (reminder.id === req.params["id"]); {
-          return reminder
-        }
+        return reminder.id === req.params["id"]
       });
       res.render("reminder/single-reminder", { reminderItem: item });
     } else {
-      res.render("rem inder/index", { reminders: req.user.reminders });
+      res.render("reminder/index", { reminders: req.user.reminders });
     }
 },
 
@@ -73,6 +71,14 @@ let remindersController = {
     res.redirect("/reminders");
 
   },
+  admin: (req, res) => {
+    req.sessionStore.sessionModel.findAll()
+      .then(sessions => sessions.map(sess => JSON.parse(sess.dataValues.data)))
+      .then((sessions) => {
+        res.render('admin', { sessions: sessions });
+      })
+  }
+
 };
 
 module.exports = remindersController;

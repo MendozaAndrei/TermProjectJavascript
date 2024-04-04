@@ -43,6 +43,7 @@ app.use(passport.session());
 // Routes start here
 app.get("/", reminderController.list); 
 app.get("/reminders", reminderController.list);
+app.get("/admin", reminderController.admin);
 app.get("/reminder/new", reminderController.new);
 app.get("/reminder/:id", reminderController.listOne);
 app.get("/reminder/:id/edit", reminderController.edit);
@@ -61,6 +62,7 @@ app.post("/login", authController.loginSubmit);
 
 
 app.listen(3001, function () {
+  console.log(passport.session())
   console.log(
     "Server running. Visit: http://localhost:3001/reminders in your browser 🚀"
   );
