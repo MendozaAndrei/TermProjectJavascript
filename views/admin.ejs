@@ -6,21 +6,17 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>SessionID</th>
+                <th>UserID</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <% sessions.forEach(session => { %>
             <tr>
-              <td><%= session.id %></td>
-              <td><%= session.name %></td>
-              <td><%= session.email %></td>
-              <td><%= session.role %></td>
+              <td><%= session.SessionID %></td>
+              <td><%= session.UserID %></td>
               <td>
-                <button class="btn btn-danger" onclick="deleteSession('<%= session.id %>')">Delete</button>
+                <button class="btn btn-danger" onclick="sessionStore.destroy('<%= session.id %>')">Delete</button>
               </td>
             </tr>
           <% }) %>

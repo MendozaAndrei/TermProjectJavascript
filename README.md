@@ -5,6 +5,9 @@ Andrei Jan Mendoza:
     Watched through Passport video 1
     Looked through Github Forums and Stackoverflow
 3. Made passport work, along with guessing who is a regular user and who is an admin. 
+4. Created admin page to show available sessions. 
+    - Sourced form watching through passport video
+    - Information from npm library
 
 
 

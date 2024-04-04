@@ -2,7 +2,7 @@ let database = require("../models/userModel").database;
 
 let remindersController = {
   list: (req, res) => {
-    console.log(req.user)
+    // console.log(req.user)
     if (req.user && req.user.role === "admin") {
         res.redirect('/admin');
     } else if (req.user && req.user.role === "regular") {
@@ -73,12 +73,36 @@ let remindersController = {
 
   },
   admin: (req, res) => {
-    req.sessionStore.sessionModel.findAll()
-      .then(sessions => sessions.map(sess => JSON.parse(sess.dataValues.data)))
-      .then((sessions) => {
-        res.render('admin', { sessions: sessions });
-      })
-  }
+  
+    req.sessionStore.all((err, sessions) => {
+      if (err) {
+        console.log(err);
+        return res.redirect("/auth/login");
+      }
+  
+      // console.log(sessions);
+  
+      let sessionList = [];
+      for (let key in sessions) {
+        if (req.user.id != sessions[key].passport.user) {
+          sessionList.push({"SessionID":key, "UserID":sessions[key].passport.user})
+        }
+      }
+      //console.log(sessionList);
+      res.render("admin", { user: req.user, sessions: sessionList });
+    });
+  
+  },
+  destroy: (req, res) => {
+    const sessionId = req.params.sessionId;
+    console.log(sessionId)
+    req.sessionStore.destroy(sessionId, (err) => {
+      if (err) {
+        console.log(err);
+        return res.redirect('/admin');
+      }
+      res.redirect('/admin');
+    });}
 
 };
 

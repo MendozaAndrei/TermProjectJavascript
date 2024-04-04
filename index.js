@@ -50,6 +50,7 @@ app.get("/reminder/:id/edit", reminderController.edit);
 app.post("/reminder/", reminderController.create);
 // ⭐ Implement these two routes below!
 app.post("/reminder/update/:id", reminderController.update);
+app.post("/admin", reminderController.destroy);
 app.post("/reminder/delete/:id", reminderController.delete);
 
 // 👌 Ignore for now
@@ -61,9 +62,9 @@ app.post("/login", authController.loginSubmit);
 
 
 
-app.listen(3001, function () {
+app.listen(3090, function () {
   console.log(passport.session())
   console.log(
-    "Server running. Visit: http://localhost:3001/reminders in your browser 🚀"
+    "Server running. Visit: http://localhost:3090/reminders in your browser 🚀"
   );
 });

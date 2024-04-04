@@ -29,7 +29,38 @@ let database = [
         completed: false,
       },
     ],
+  },
+  {
+    id: 3,
+    name: "Michael Reefs",
+    email: "michaelreefs@gmail.com",
+    password: "michael123!",
+    role: "regular",
+    reminders: [
+      {
+        id: 1,
+        title: "Grocery shopping",
+        description: "Buy milk and bread from safeway",
+        completed: false,
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "John Doe",
+    email: "john@gmail.com",
+    password: "john123!",
+    role: "regular",
+    reminders: [
+      {
+        id: 1,
+        title: "Grocery shopping",
+        description: "Buy milk and bread from safeway",
+        completed: false,
+      },
+    ],
   }
+  
 ]
 
 
