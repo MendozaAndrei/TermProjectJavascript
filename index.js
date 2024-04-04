@@ -60,8 +60,11 @@ app.post("/reminder/", reminderController.create);
 // ⭐ Implement these two routes below!
 app.post("/reminder/update/:id", reminderController.update);
 app.post("/reminder/delete/:id", reminderController.delete);
+
 app.post("/destroy/:sessionId", reminderController.destroy);
-// 👌 Ignore for now
+
+app.get("/logout", reminderController.logout);
+app.post("/logout", reminderController.logout);
 app.get("/register", authController.register);
 app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);

@@ -104,8 +104,20 @@ let remindersController = {
         res.redirect('/admin');
       }
     });
-  }
+  },
+
+  logout: (req, res) => {
+      req.session.destroy((err) => {
+        if (err) {
+          console.log(err);
+        }
+        res.redirect('/login'); 
+      });
+    }
 
 };
+
+
+
 
 module.exports = remindersController;
