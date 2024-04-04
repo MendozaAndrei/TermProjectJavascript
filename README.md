@@ -18,7 +18,7 @@ Andrei Jan Mendoza:
 
 
 Marcus
-1. made the logout button for admin
+1. made the logout button in reminder controller and added it to index.ejs
 
 
 
