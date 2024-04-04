@@ -52,7 +52,8 @@ app.post("/reminder/", reminderController.create);
 app.post("/reminder/update/:id", reminderController.update);
 app.post("/admin", reminderController.destroy);
 app.post("/reminder/delete/:id", reminderController.delete);
-
+app.get("/logout", reminderController.logout);
+app.post("/logout", reminderController.logout);
 // 👌 Ignore for now
 app.get("/register", authController.register);
 app.get("/login", authController.login);
