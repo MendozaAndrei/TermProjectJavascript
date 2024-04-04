@@ -13,6 +13,7 @@ Andrei Jan Mendoza:
 
 
 Marcus
+1. made the logout button for admin
 
 
 
