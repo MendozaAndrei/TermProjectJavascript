@@ -74,7 +74,7 @@ let remindersController = {
     req.sessionStore.all((err, sessions) => {
       if (err) {
         console.log(err);
-        return res.redirect("/auth/login");
+        return res.redirect("/login");
       }
   
       console.log(sessions);
