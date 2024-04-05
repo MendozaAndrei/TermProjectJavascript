@@ -12,7 +12,7 @@ Andrei Jan Mendoza:
     - Sourced from watching through passport videos
     - Old Code from previous labs
     - Reading through npm library documentation.
-
+6. Improved UI design by removing navigation bar from Admin and Login page
 
 
 
