@@ -8,12 +8,9 @@ let remindersController = {
     } else if (req.user && req.user.role === "regular") {
       res.render("reminder/index", { reminders: req.user.reminders });
     } else {
-      // Handle the case where req.user is undefined
-      // Maybe redirect to login page or show an error message
       res.redirect("/login");
     }
   },
-  // rest of the code
 
   new: (req, res) => {
     res.render("reminder/create");
@@ -80,15 +77,16 @@ let remindersController = {
         return res.redirect("/auth/login");
       }
   
-      // console.log(sessions);
+      console.log(sessions);
   
       let sessionList = [];
       for (let key in sessions) {
         if (req.user.id != sessions[key].passport.user) {
+          console.log(key)
           sessionList.push({"SessionID":key, "UserID":sessions[key].passport.user})
         }
       }
-      //console.log(sessionList);
+      // console.log(sessionList);
       res.render("admin", { user: req.user, sessions: sessionList });
     });
   

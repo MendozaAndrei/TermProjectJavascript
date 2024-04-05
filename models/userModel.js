@@ -15,7 +15,27 @@ let database = [
       },
       {
         id: 2,
-        title: ""
+        title: "Walk the puppy",
+        description: "Take the puppy for a walk around the block",
+        completed: false,
+      },
+      {
+        id: 3,
+        title: "Biking",
+        description: "Biking in stanley park",
+        completed: false,
+      },
+      {
+        id: 4,
+        title: "Swimming",
+        description: "Swimming at the community pool",
+        completed: false,
+      },
+      {
+        id: 5,
+        title: "Running",
+        description: "Running at the beach",
+        completed: true,
       }
     ],
   },
@@ -75,12 +95,12 @@ const userModel = {
     if (user) {
       return user;
     }
-    throw new Error(`Couldn't find user with email: ${email}`);
+    return null;
   },
   findById: (id) => {
     const user = database.find((user) => user.id === id);
     if (user) {
-      return user;
+      return user
     }
     throw new Error(`Couldn't find user with id: ${id}`);
   },

@@ -12,17 +12,14 @@ Andrei Jan Mendoza:
     - Sourced from watching through passport videos
     - Old Code from previous labs
     - Reading through npm library documentation.
-    
+
 
 
 
 
 Marcus
-1. made the logout button in reminder controller and added it to index.ejs
-
-
-
+1. Added logout in reminder_controller
+2. Fixed the button for the Admin page and added the logout button for a regular user.
 
 
 Rafeel
-added github.txt
