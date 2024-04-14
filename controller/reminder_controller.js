@@ -28,16 +28,19 @@ let remindersController = {
     }
   },
 
-  create: (req, res) => {
+
+  create: async (req, res) => {
     let reminder = {
       id: req.user.reminders.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
+      bannerImage: await keywordToimage(req.body.title),
     };
     req.user.reminders.push(reminder);
     res.redirect("/reminders");
   },
+
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
@@ -46,12 +49,14 @@ let remindersController = {
     });
     res.render("reminder/edit", { reminderItem: searchResult });
   },
-
-  update: (req, res) => {
-    let reminderToFind = req.params.id;
+/*
+  update: async (req, res) => {
+    let reminderToFind = req.params.id; 
     req.user.reminders.find(function (reminder) {
       if (reminder.id == reminderToFind) {
         reminder.title = req.body.title;
+        const imageUrl = await keywordToimage(req.body.title);
+        reminder.bannerImage = imageUrl;
         reminder.description = req.body.description;
         reminder.completed = true ? req.body.completed === "true" : false;
         return reminder.id
@@ -59,6 +64,30 @@ let remindersController = {
     });
     res.redirect("/reminders");
   },
+*/
+update: async (req, res) => {
+  try {
+      let reminderToFind = req.params.id;
+      let reminder = req.user.reminders.find(reminder => reminder.id == reminderToFind);
+
+      if (!reminder) {
+          return res.status(404).send("Reminder not found");
+      }
+
+      reminder.title = req.body.title;
+      reminder.description = req.body.description;
+      reminder.completed = req.body.completed === "true";
+
+      // Update the banner image
+      const imageUrl = await keywordToimage(req.body.title);
+      reminder.bannerImage = imageUrl;
+
+      res.redirect("/reminders");
+  } catch (error) {
+      console.error("Error updating reminder:", error);
+      res.status(500).send("Server Error");
+  }
+},
 
   delete: (req, res) => {
     let reminderToFind = req.params.id;
@@ -115,7 +144,24 @@ let remindersController = {
 
 };
 
+async function keywordToimage(keyword) {
+  try {
+    const response = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${keyword}&client_id=f1JxwA3wa9KLQchV8RXeo46tX1pyA_79vya7FsAoJrA`);
+    const data = await response.json();
 
+    if (data.results.length === 0) {
+      console.log("No images found for keyword:", keyword);
+      return null;
+    }
+
+    const photoUrl = data.results[0].urls.regular;
+    console.log(photoUrl)
+    return photoUrl;
+  } catch (error) {
+    console.log('Error fetching photo:', error);
+    return null;
+  }
+}
 
 
 module.exports = remindersController;

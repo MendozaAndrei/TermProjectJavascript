@@ -19,6 +19,10 @@ Andrei Jan Mendoza:
 Marcus
 1. Added logout in reminder_controller
 2. Fixed the button for the Admin page and added the logout button for a regular user.
+3. Added the banner part to the reminder controller and the ejs
+    - looked at the documentation for the unsplash api
+    - watched some tutorials on how to use the unsplash api with node js
+    - made the function to search for the specified image with unsplash api then put the image on single-reminder.ejs. This function is called if you create a new reminder or edit a reminder
 
 
 Rafeel
