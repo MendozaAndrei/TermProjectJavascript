@@ -17,7 +17,8 @@ Andrei Jan Mendoza:
 
 
 Marcus
-1. Added logout in reminder_controller
+1. Added the logout function in reminder_controller
+    - watched all the videos for the project
 2. Fixed the button for the Admin page and added the logout button for a regular user.
 3. Added the banner part to the reminder controller and the ejs
     - looked at the documentation for the unsplash api
