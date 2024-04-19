@@ -53,9 +53,10 @@ app.post("/destroy/:sessionId", reminderController.destroy);
 app.get("/logout", reminderController.logout);
 app.post("/logout", reminderController.logout);
 app.get("/register", authController.register);
-app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
+app.get("/login", authController.login);
 app.post("/login", authController.loginSubmit);
+
 
 
 

@@ -104,8 +104,17 @@ const userModel = {
     }
     throw new Error(`Couldn't find user with id: ${id}`);
   },
+   
+  addUser: (user) => {
+    const maxId = Math.max(...database.map(user => user.id));
+
+    user.id = maxId + 1;
+
+    database.push(user);
+    return user;
+  },
 };
 
 
 
-module.exports = { database, userModel };
+module.exports = { database, userModel,  };

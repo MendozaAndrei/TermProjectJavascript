@@ -28,3 +28,4 @@ Marcus
 
 Rafeel
 1. Improved UI design by removing navigation bar from Admin and Login page
+2. Fixed register button to add 
