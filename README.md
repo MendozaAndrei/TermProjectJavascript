@@ -29,4 +29,11 @@ Marcus
 Rafeel
 1. Improved UI design by removing navigation bar from Admin and Login page
 2. Made registration button that adds user to database and checks if the email exists and also made an addUser method in userModel.js
+3. Made Registeration Button Function
+   -Adds user to the database
+   -Validates user by checking
+       -If email exists
+       -Checking if they input their name
+       -Checking if both passwords they entered are the same
+4. Made an addUser Method in userModel.js to PUSH new users into the database. 
  
