@@ -106,10 +106,7 @@ const userModel = {
   },
    
   addUser: (user) => {
-    const maxId = Math.max(...database.map(user => user.id));
-
-    user.id = maxId + 1;
-
+    user.id = database.length + 1;
     database.push(user);
     return user;
   },
