@@ -1,5 +1,5 @@
 <h1>Breakdown of work</h1>
-<h3>Andrei Jan Mendoza</h3>:
+Andrei Jan Mendoza
 1. Updated the Delete and Update Buttons to make it work. 
 2. Imported the Passport, but needs more tweaking.
     Watched through Passport video 1
@@ -13,7 +13,7 @@
     - Old Code from previous labs
     - Reading through npm library documentation.
 
-<h3>Marcus</h3>
+Marcus
 1. Added the logout function in reminder_controller
     - watched all the videos for the project
 2. Fixed the button for the Admin page and added the logout button for a regular user.
@@ -23,7 +23,7 @@
     - made the function to search for the specified image with unsplash api then put the image on single-reminder.ejs. This function is called if you create a new reminder or edit a reminder
 
 
-<h3>Rafeel</h3> 
+Rafeel 
 1. Improved UI design by removing navigation bar from Admin and Login page
 2. Made registration button that adds user to database and checks if the email exists and also made an addUser method in userModel.js
 3. Made Registeration Button Function
